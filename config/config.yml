@@ -1,0 +1,11 @@
+slack:
+  test_integration:
+    # This is the URL for your incoming webhook
+    endpoint: https://hooks.slack.com/services/X/Y/z
+    enabled: false
+    # If not set, these options will fall back to your defaults
+    icon_url: null
+    icon_emoji: null
+    channel: '#some-channel'
+    # Valid: good, warning, danger, #rrggbb
+    color: warning

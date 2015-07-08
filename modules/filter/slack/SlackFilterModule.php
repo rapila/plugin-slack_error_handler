@@ -58,6 +58,11 @@ class SlackFilterModule extends FilterModule {
 				'value' => $aError['filename'].' ('.$aError['line'].')',
 				'short' => false
 			),
+			array(
+				'title' => 'Referrer',
+				'value' => $aError['referrer'],
+				'short' => false
+			),
 		);
 		$aErrorAttachment['text'] = implode("\n", $aError['trace']);
 

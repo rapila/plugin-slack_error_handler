@@ -7,7 +7,7 @@ class SlackFilterModule extends FilterModule {
 		$aSlackConfigs = Settings::getSetting('slack', null, array());
 		$aError = &$aContainer[0];
 		foreach($aSlackConfigs as $sName => $aConfig) {
-			if(@$aConfig['enabled'] === false) {
+			if(!isset($aConfig['enabled']) || $aConfig['enabled']  === false) {
 				continue;
 			}
 			$this->postToSlack($aError, $aConfig);
@@ -73,7 +73,8 @@ class SlackFilterModule extends FilterModule {
 		$rCurl = curl_init($sURL);
 		curl_setopt($rCurl, CURLOPT_POST, 1);
 		curl_setopt($rCurl, CURLOPT_POSTFIELDS, $sParams);
-		curl_setopt($rCurl, CURLOPT_HTTPHEADER, array('Content-Type' => 'application/json;charset=utf-8'));
+		curl_setopt($rCurl, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($rCurl, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 		curl_exec($rCurl);
 		curl_close($rCurl);
 	}

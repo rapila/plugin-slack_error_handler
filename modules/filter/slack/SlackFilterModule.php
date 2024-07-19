@@ -16,10 +16,10 @@ class SlackFilterModule extends FilterModule {
 	
 	private function postToSlack($aError, $aSlackConfig) {
 		$sURL = $aSlackConfig['endpoint'];
-		$sIconURL = @$aSlackConfig['icon_url'];
-		$sIconEmoji = @$aSlackConfig['icon_emoji'];
-		$sChannel = @$aSlackConfig['channel'];
-		$sColor = @$aSlackConfig['color'];
+		$sIconURL = isset($aSlackConfig['icon_url']) ? $aSlackConfig['icon_url'] : null;
+		$sIconEmoji = isset($aSlackConfig['icon_emoji']) ? $aSlackConfig['icon_emoji'] : null;
+		$sChannel = isset($aSlackConfig['channel']) ? $aSlackConfig['channel'] : null;
+		$sColor = isset($aSlackConfig['color']) ? $aSlackConfig['color'] : null;
 
 		$aParams = array();
 		$aParams['text'] = $aError['message'];
